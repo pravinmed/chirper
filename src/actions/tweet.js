@@ -9,6 +9,7 @@ export const ADD_TWEET = 'ADD_TWEET'
 
 
 export function receiveTweets(tweets) {
+    console.log(" In receive tweets ");
     return {
         type: RECEIVE_TWEETS,
         tweets
@@ -39,7 +40,7 @@ export function handleAddTweet({text, replyingTo}) {
         dispatch(showLoading());
         console.log(" In HandleAddTweet ")
         return saveTweet({text, 
-            author: authedUser, 
+            author: authedUser.id, 
             replyingTo
         }).
         then((tweet) => dispatch(addTweet(tweet)))

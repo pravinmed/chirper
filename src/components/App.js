@@ -12,6 +12,7 @@ class App extends Component {
   {
     // Store has dispatch in it.
     console.log(" Props in App", this.props);
+    console.log(" Initial Data loaded ");
     this.props.dispatch(handleInitialData());
     console.log("All Props " ,this.props.tweets);
   }

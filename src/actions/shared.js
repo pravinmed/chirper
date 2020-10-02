@@ -8,14 +8,15 @@ import {showLoading, hideLoading} from 'react-redux-loading'
 const AUTHED_ID = ['tylermcginnis'];
 export function handleInitialData()
 {
-    console.log(" Handle Initial Data ");
     return (dispatch)=>{
+        console.log(" Handle Initial Data ");
+    
         dispatch(showLoading());
        return  getInitialData().then
        (({users,tweets}) => {
         dispatch(receiveUsers(users)); 
         dispatch(receiveTweets(tweets));
-            dispatch(setAuthedUser(AUTHED_ID))
+            dispatch(setAuthedUser('tylermcginnis'))
             dispatch(hideLoading())
        });
     };

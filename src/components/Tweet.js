@@ -30,13 +30,14 @@ class Tweet extends React.Component
 
     render()
     {
+       
+        if (tweet === null || typeof tweet === 'undefined') {
+            return (<div> Tweet doesnt exists</div>)
+        }
         const {tweet} = this.props;
         const {name, avatar,timestamp,text, hasLiked,likes,replies,id,parent} 
         = tweet;
   
-        if (tweet === null) {
-            return (<div> Tweet doesnt exists</div>)
-        }
         return (
             
             <div className='tweet'>
@@ -79,12 +80,17 @@ function mapStateToProps({users, tweets, authedUser}, {id})
     const tweet = tweets[id];
     console.log(" tweets in Tweet.js ", tweet);
     console.log(" users in Tweet.js ", users);
-
+    if (typeof(tweet) === 'undefined'){
+       // tweet = null;
+       console.log(" Undefined ");
+    }
 
     const parentTweet = tweet ? tweets[tweet.replyingTo] : null;
     return {
         authedUser,
-        tweet: formatTweet(tweet, users[tweet.author], authedUser, parentTweet)
+        tweet:  typeof tweet !== 'undefined' ? 
+          formatTweet(tweet, users[tweet.author], authedUser, parentTweet):
+            null,
     }
 }
 
