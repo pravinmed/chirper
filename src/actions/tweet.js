@@ -36,9 +36,11 @@ function addTweet(tweet){
 
 export function handleAddTweet({text, replyingTo}) {
     return (dispatch,getState) => {
+      
         const {authedUser} = getState();
+        console.log(" In HandleAddTweet and id is  ", text, authedUser.id)
+      
         dispatch(showLoading());
-        console.log(" In HandleAddTweet ")
         return saveTweet({text, 
             author: authedUser.id, 
             replyingTo

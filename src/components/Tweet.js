@@ -16,7 +16,6 @@ class Tweet extends React.Component
     }
 
     handleLike = (e) => {
-        console.log("In handle like ");
        
         e.preventDefault();
         const {dispatch, tweet, authedUser}  = this.props;
@@ -30,14 +29,15 @@ class Tweet extends React.Component
 
     render()
     {
-       
-        if (tweet === null || typeof tweet === 'undefined') {
+        
+        if (this.props.tweet === null || typeof this.props.tweet === 'undefined') {
             return (<div> Tweet doesnt exists</div>)
         }
         const {tweet} = this.props;
         const {name, avatar,timestamp,text, hasLiked,likes,replies,id,parent} 
         = tweet;
-  
+
+     
         return (
             
             <div className='tweet'>
@@ -75,14 +75,14 @@ class Tweet extends React.Component
 
 function mapStateToProps({users, tweets, authedUser}, {id})
 {
-    console.log(" id ", id);
-    
     const tweet = tweets[id];
-    console.log(" tweets in Tweet.js ", tweet);
-    console.log(" users in Tweet.js ", users);
     if (typeof(tweet) === 'undefined'){
        // tweet = null;
        console.log(" Undefined ");
+    } else {
+        console.log("New tweet added ", tweet);
+        console.log("New tweet Id is  ", id);
+  
     }
 
     const parentTweet = tweet ? tweets[tweet.replyingTo] : null;

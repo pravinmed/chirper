@@ -14,7 +14,6 @@ class App extends Component {
     console.log(" Props in App", this.props);
     console.log(" Initial Data loaded ");
     this.props.dispatch(handleInitialData());
-    console.log("All Props " ,this.props.tweets);
   }
 
   render() {
@@ -32,9 +31,6 @@ class App extends Component {
 
 
 function mapStateToProps({authUser, tweets}) {
-   console.log("AuthUser App " ,authUser);
-   console.log(" Tweets in App ", tweets);
-
   return {
     loading: authUser === null
   }

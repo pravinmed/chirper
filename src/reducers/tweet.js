@@ -24,22 +24,31 @@ export default function tweets(state ={}, action)
                 }
             }
         case ADD_TWEET:
-            console.log(" Adding tweet ")
             const {tweet} = action
+            console.log(" Adding tweet id ", tweet.id);
+          
             let replyingTo = {}
             if (tweet.replyingTo !== null)
             {
+                
                 replyingTo = {
                     [tweet.replyingTo] : {
                         ...state[tweet.replyingTo],
                         replies: state[tweet.replyingTo].replies.concat([tweet.id])
                     }
                 }
+            } else {
+                replyingTo = {
+                        replies: tweet
+                }
             }
+
+            
+            console.log(" replies ", replyingTo);
             return {
                 ...state,
                 [action.tweet.id]:action.tweet,
-                ...replyingTo
+                ...replyingTo,
             }
 
         default:

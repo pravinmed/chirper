@@ -8,6 +8,8 @@ class TweetPage extends Component {
     render()
     {
         const {id, replies} = this.props;
+        console.log(" Reply length ",replies.length)
+        console.log(" First Reply ", replies[0]);
         return (
             <div>
                 TWEET PAGE 
@@ -29,13 +31,14 @@ class TweetPage extends Component {
 }
 
 function mapStateToPros({authedUser, tweets,users}, props){
-    console.log(" Props ", props);
-    console.log(" Tweets in TweetPage ", tweets);
     const {id} = props.match.params;
+    console.log(" tweets in TweetPage ",tweets)
+  
+    console.log(" tweets for id  in TweetPage ",tweets[id])
     return {
         id,
         replies : !tweets[id] ?[] : 
-        tweets[id].replies.sort((a,b) => { tweets[a].timestamp - tweets[b].timestamp})
+        tweets[id].replies.sort((a,b) =>  tweets[b].timestamp - tweets[a].timestamp)
     }
 }
 

@@ -12,6 +12,7 @@ class NewTweet extends Component
 
     handleChange = (e) => {
         const text = e.target.value
+        console.log(" Tweet is ",text)
         this.setState( ()=> ({
             text
         }))
@@ -20,11 +21,15 @@ class NewTweet extends Component
     handleSubmit = (e) =>{
         e.preventDefault();
         const {text} = this.state;
+       
         const {dispatch, id} = this.props;
-        dispatch(handleAddTweet(text,id));
-        this.setState(()=>{
-            text:''
-        })
+        console.log("New Tweet and id  ", text,id);
+       
+        dispatch(handleAddTweet({text,id}));
+        this.setState(()=>({
+            text :'',
+        }))
+        console.log(" New text is ", text);
     }
 
     render() {
